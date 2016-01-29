@@ -21,3 +21,4 @@ stacktrace.log
 .idea
 lib
 *.iml
+.slcache
