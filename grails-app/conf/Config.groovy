@@ -115,3 +115,22 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.toastcoders.openorder.Customer'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.toastcoders.openorder.CustomerRole'
+grails.plugin.springsecurity.authority.className = 'com.toastcoders.openorder.Role'
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                ['permitAll'],
+	'/index':           ['permitAll'],
+	'/index.gsp':       ['permitAll'],
+	'/assets/**':       ['permitAll'],
+	'/**/js/**':        ['permitAll'],
+	'/**/css/**':       ['permitAll'],
+	'/**/images/**':    ['permitAll'],
+	'/**/favicon.ico':  ['permitAll']
+]
+
+siteName = "FoodMatters Buying Club"
