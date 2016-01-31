@@ -15,7 +15,7 @@
 
     </label>
     <g:select name="subCategories" from="${com.toastcoders.openorder.cart.Category.list()}" multiple="multiple"
-              optionKey="id" size="5" value="${categoryInstance?.subCategories*.id}" optionValue="name" class="input-lg form-control" />
+              optionKey="id" size="5" value="${categoryInstance?.subCategories*.id}" optionValue="name" class="input-lg form-control col-xs-6" />
 
 </div>
 
@@ -40,5 +40,14 @@
             <li><g:link controller="item" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
         </g:each>
     </ul>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: categoryInstance, field: 'isPrimary', 'error')} ">
+    <label for="showContactInfoToUser">
+        <g:message code="category.isPrimary.label" default="Is this a top level category" />
+
+    </label>
+    <g:checkBox name="isPrimary" value="${categoryInstance?.isPrimary}" />
 
 </div>

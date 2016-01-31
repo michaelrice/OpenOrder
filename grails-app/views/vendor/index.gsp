@@ -15,9 +15,9 @@
         <div class="message" role="status">${flash.message}</div>
     </g:if>
     <div class="jumbotron">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
-            <tr>
+            <tr class="info">
                 <g:sortableColumn property="name" title="${message(code: 'vendor.name.label', default: 'Name')}"/>
                 <g:sortableColumn property="contactInfo"
                                       title="${message(code: 'vendor.contactInfo.label', default: 'Contact Info')}"/>
@@ -48,6 +48,9 @@
             <g:paginate total="${vendorInstanceCount ?: 0}"/>
         </div>
     </div>
+    <sec:ifAnyGranted roles="ROLE_ADMIN">
+        <g:link action="create" class="btn btn-primary btn-lg">Add Vendor</g:link>
+    </sec:ifAnyGranted>
 </div>
 </body>
 </html>

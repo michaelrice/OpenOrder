@@ -34,9 +34,14 @@
                 <td><g:formatBoolean boolean="${customerInstance.enabled}"/></td>
 
                 <td><g:formatBoolean boolean="${customerInstance.passwordExpired}"/></td>
-                <g:each in="${customerInstance.getAuthorities()}">
-                    <td>${it.authority}</td>
-                </g:each>
+                <g:if test="${customerInstance.getAuthorities().size() != 0}">
+                    <g:each in="${customerInstance.getAuthorities()}">
+                        <td>${it.authority}</td>
+                    </g:each>
+                </g:if>
+                <g:else>
+                    <td>None</td>
+                </g:else>
 
             </tr>
         </g:each>
@@ -53,9 +58,14 @@
             <td><g:formatBoolean boolean="${customerInstance.enabled}"/></td>
 
             <td><g:formatBoolean boolean="${customerInstance.passwordExpired}"/></td>
+            <g:if test="${customerInstance.getAuthorities().size() != 0}">
             <g:each in="${customerInstance.getAuthorities()}">
                 <td>${it.authority}</td>
             </g:each>
+            </g:if>
+            <g:else>
+                <td>None</td>
+            </g:else>
 
         </tr>
     </g:else>
