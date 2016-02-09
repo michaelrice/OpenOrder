@@ -26,16 +26,29 @@
                 </g:if>
 
                 <g:if test="${SpringSecurityUtils.ifAnyGranted("ROLE_ADMIN") || vendorInstance?.showContactInfoToUser}">
-                <g:if test="${vendorInstance?.contactInfo}">
+                <g:if test="${vendorInstance?.email}">
                     <li class="fieldcontain">
-                        <span id="contactInfo-label" class="property-label"><g:message code="vendor.contactInfo.label"
-                                                                                       default="Contact Info"/></span>
-
-                        <span class="property-value" aria-labelledby="contactInfo-label"><g:fieldValue bean="${vendorInstance}"
-                                                                                                       field="contactInfo"/></span>
+                        <span class="property-label"><g:message code="vendor.email.label" default="Email"/></span>
+                        <span class="property-value"><g:fieldValue bean="${vendorInstance}" field="email"/></span>
 
                     </li>
                 </g:if>
+                    <g:if test="${vendorInstance?.phoneNumber}">
+                        <li class="fieldcontain">
+                            <span class="property-label"><g:message code="vendor.phoneNumber.label" default="phoneNumber"/></span>
+                            <span class="property-value"><g:fieldValue bean="${vendorInstance}" field="phoneNumber"/></span>
+
+                        </li>
+                    </g:if>
+                    <g:if test="${vendorInstance?.website}">
+                        <li class="fieldcontain">
+                            <span id="contactInfo-label" class="property-label"><g:message code="vendor.website.label"
+                                                                                           default="Website"/></span>
+
+                            <span class="property-value"><g:fieldValue bean="${vendorInstance}" field="website"/></span>
+
+                        </li>
+                    </g:if>
                 </g:if>
 
                 <g:if test="${vendorInstance?.description}">

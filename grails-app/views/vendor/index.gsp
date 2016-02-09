@@ -19,8 +19,9 @@
             <thead>
             <tr class="info">
                 <g:sortableColumn property="name" title="${message(code: 'vendor.name.label', default: 'Name')}"/>
-                <g:sortableColumn property="contactInfo"
-                                      title="${message(code: 'vendor.contactInfo.label', default: 'Contact Info')}"/>
+                <g:sortableColumn property="email" title="${message(code: 'vendor.email.label', default: 'Email')}"/>
+                <g:sortableColumn property="phoneNumber" title="${message(code: 'vendor.phoneNumber.label', default: 'Phone Number')}"/>
+                <g:sortableColumn property="website" title="${message(code: 'vendor.phoneNumber.label', default: 'Website')}"/>
                 <g:sortableColumn property="description"
                                   title="${message(code: 'vendor.description.label', default: 'Description')}"/>
             </tr>
@@ -32,7 +33,9 @@
                                 id="${vendorInstance.id}">${fieldValue(bean: vendorInstance, field: "name")}</g:link></td>
 
                     <g:if test="${vendorInstance?.showContactInfoToUser || grails.plugin.springsecurity.SpringSecurityUtils.ifAnyGranted("ROLE_ADMIN")}">
-                        <td>${fieldValue(bean: vendorInstance, field: "contactInfo")}</td>
+                        <td>${fieldValue(bean: vendorInstance, field: "email")}</td>
+                        <td>${fieldValue(bean: vendorInstance, field: "phoneNumber")}</td>
+                        <td>${fieldValue(bean: vendorInstance, field: "website")}</td>
                     </g:if>
                     <g:else>
                         <td>&nbsp;</td>
@@ -49,7 +52,7 @@
         </div>
     </div>
     <sec:ifAnyGranted roles="ROLE_ADMIN">
-        <g:link action="create" class="btn btn-primary btn-lg">Add Vendor</g:link>
+        <g:makeButton btnType="default" message="Add Vendor" />
     </sec:ifAnyGranted>
 </div>
 </body>
