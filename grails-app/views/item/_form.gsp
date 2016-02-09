@@ -16,7 +16,7 @@
         <g:message code="item.thumbnailImage.label" default="Thumbnail Image"/>
 
     </label>
-    <g:textField name="thumbnailImage" value="${itemInstance?.thumbnailImage}" />
+    <g:textField name="thumbnailImage" value="${itemInstance?.thumbnailImage}"/>
 
 </div>
 
