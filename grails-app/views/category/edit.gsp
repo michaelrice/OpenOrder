@@ -23,7 +23,7 @@
                     </g:eachError>
                 </ul>
             </g:hasErrors>
-            <g:form url="[resource: categoryInstance, action: 'update']" method="PUT">
+            <g:form class="form-horizontal" url="[resource: categoryInstance, action: 'update']" method="PUT">
                 <g:hiddenField name="version" value="${categoryInstance?.version}"/>
                 <fieldset class="form">
                     <g:render template="form"/>

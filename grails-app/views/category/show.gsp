@@ -16,6 +16,11 @@
             <div class="message" role="status">${flash.message}</div>
         </g:if>
         <ul class="list-unstyled">
+            <g:if test="${categoryInstance?.name}">
+                <li class="list-cell">
+                    <h4><g:fieldValue bean="${categoryInstance}" field="name"/></h4>
+                </li>
+            </g:if>
 
             <g:if test="${categoryInstance?.items}">
                 <li class="list-cell">
@@ -24,17 +29,13 @@
 
                     <g:each in="${categoryInstance.items}" var="i">
                         <span class="property-value" aria-labelledby="items-label"><g:link controller="item" action="show"
-                                                                                           id="${i.id}">${i?.encodeAsHTML()}</g:link></span>
+                                                                                           id="${i.id}">${i.name?.encodeAsHTML()}</g:link></span>
                     </g:each>
 
                 </li>
             </g:if>
 
-            <g:if test="${categoryInstance?.name}">
-                <li class="list-cell">
-                    <h4><g:fieldValue bean="${categoryInstance}" field="name"/></h4>
-                </li>
-            </g:if>
+
 
             <g:if test="${categoryInstance?.subCategories}">
                 <div class="well-sm">

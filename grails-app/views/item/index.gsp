@@ -7,20 +7,10 @@
     <title><g:message code="default.list.label" args="[entityName]"/></title>
 </head>
 
-<body>
-<a href="#list-item" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                           default="Skip to content&hellip;"/></a>
+<body role="document">
 
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="create" action="create"><g:message code="default.new.label"
-                                                              args="[entityName]"/></g:link></li>
-    </ul>
-</div>
-
-<div id="list-item" class="content scaffold-list" role="main">
-    <h1><g:message code="default.list.label" args="[entityName]"/></h1>
+<div id="list-item" class="container" role="main">
+    <h1><g:message code="default.list.label" message="Product List"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -31,37 +21,43 @@
             <g:sortableColumn property="name" title="${message(code: 'item.name.label', default: 'Name')}"/>
 
             <g:sortableColumn property="thumbnailImage"
-                              title="${message(code: 'item.thumbnailImage.label', default: 'Thumbnail Image')}"/>
-
-            <g:sortableColumn property="description"
-                              title="${message(code: 'item.description.label', default: 'Description')}"/>
-
-            <th><g:message code="item.cart.label" default="Cart"/></th>
+                              title="${message(code: 'item.thumbnailImage.label', default: 'Photo')}"/>
 
             <th><g:message code="item.category.label" default="Category"/></th>
 
-            <g:sortableColumn property="featuredItem"
-                              title="${message(code: 'item.featuredItem.label', default: 'Featured Item')}"/>
-
+            <g:sortableColumn property="price" title="Price" />
+            <g:sortableColumn property="salePrice" title="Sale Price" />
         </tr>
         </thead>
         <tbody>
         <g:each in="${itemInstanceList}" status="i" var="itemInstance">
-            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+            <g:if test="${itemInstance.isOnSale}">
+                <tr class="danger">
+            </g:if>
+            <g:else>
+            <tr class="${(i % 2) == 0 ? 'success' : ''}">
+            </g:else>
 
                 <td><g:link action="show"
                             id="${itemInstance.id}">${fieldValue(bean: itemInstance, field: "name")}</g:link></td>
 
-                <td>${fieldValue(bean: itemInstance, field: "thumbnailImage")}</td>
+                <td>
+                    <g:if test="${itemInstance?.thumbnailImage}">
+                    <g:img uri="${itemInstance?.thumbnailImage}" class="img-thumbnail" width="128" height="128" />
+                    </g:if>
+                    <g:else></g:else>
+                </td>
 
-                <td>${fieldValue(bean: itemInstance, field: "description")}</td>
-
-                <td>${fieldValue(bean: itemInstance, field: "cart")}</td>
 
                 <td>${fieldValue(bean: itemInstance, field: "category.name")}</td>
 
-                <td><g:formatBoolean boolean="${itemInstance.featuredItem}"/></td>
-
+                <td>${formatNumber(number: itemInstance.price, type: "currency", currencyCode: "USD")}</td>
+                <g:if test="${itemInstance.isOnSale}">
+                <td>${formatNumber(number: itemInstance.salePrice, type: "currency", currencyCode:"USD")}</td>
+                </g:if>
+                <g:else>
+                    <td></td>
+                </g:else>
             </tr>
         </g:each>
         </tbody>

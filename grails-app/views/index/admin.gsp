@@ -26,9 +26,9 @@
         <div class="col-xs-3">
             <h4>Product Management</h4>
             <ul class="list-unstyled">
-                <li><g:link controller="item" action="create" name="Add New Product">Add New Product</g:link></li>
                 <li><g:link controller="category" action="create" name="Add New Category">Add New Category</g:link></li>
                 <li><g:link controller="vendor" action="create" name="Add New Vendor">Add New Vendor</g:link></li>
+                <li><g:link controller="item" action="create" name="Add New Product">Add New Product</g:link></li>
             </ul>
         </div>
         <div class="col-xs-3">

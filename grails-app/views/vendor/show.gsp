@@ -94,6 +94,7 @@
                                         onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
                     </fieldset>
                 </g:form>
+                <g:link action="create" name="Create">Add New Vendor</g:link>
             </sec:ifAnyGranted>
         </div>
     </div>

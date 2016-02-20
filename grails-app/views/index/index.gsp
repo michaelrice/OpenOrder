@@ -12,7 +12,12 @@
     <meta name="layout" content="main">
 <g:set var="entityName" value="${message(code: 'customer.label', default: 'Customer')}"/>
 <title><g:message code="default.list.label" args="[entityName]"/></title>
-</head><h1>hell to the o</h1>
-${}
-</body>
+</head>
+    <body>
+    <div class="container">
+        <div class="jumbotron">
+            Good Day.
+        </div>
+    </div>
+    </body>
 </html>
