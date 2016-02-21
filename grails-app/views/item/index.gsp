@@ -27,6 +27,7 @@
 
             <g:sortableColumn property="price" title="Price" />
             <g:sortableColumn property="salePrice" title="Sale Price" />
+            <th>Add To Cart</th>
         </tr>
         </thead>
         <tbody>
@@ -58,6 +59,7 @@
                 <g:else>
                     <td></td>
                 </g:else>
+                <td><g:link controller="cart" action="addItem" id="${itemInstance.id}">Add to cart</g:link> </td>
             </tr>
         </g:each>
         </tbody>

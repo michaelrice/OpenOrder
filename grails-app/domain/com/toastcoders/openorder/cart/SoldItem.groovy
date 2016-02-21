@@ -9,14 +9,16 @@ class SoldItem {
     boolean isOnSale
     float salePrice
 
+    static belongsTo = [cart: Cart]
+
     static constraints = {
     }
 
     public SoldItem(Item item) {
-        item.properties.each {
-            if (this.hasProperty(it.key.toString())) {
-                this.setProperty(it.key.toString(), it.value.toString())
-            }
-        }
+        name = item.name
+        cost = item.cost
+        price = item.price
+        isOnSale = item.isOnSale
+        salePrice = item.salePrice
     }
 }
