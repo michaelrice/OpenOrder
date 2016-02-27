@@ -10,7 +10,7 @@ import grails.transaction.Transactional
 class CartService {
     def springSecurityService
 
-    def verifyCart() {
+    public boolean verifyCart() {
         Customer customer = springSecurityService.currentUser
 
         if (!customer) {

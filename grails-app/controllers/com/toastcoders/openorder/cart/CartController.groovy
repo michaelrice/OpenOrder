@@ -37,6 +37,9 @@ class CartController {
 
     def addItem() {
         def itemId = params.get("id") as int
+        if (!cartService.verifyCart()) {
+            cartService.addCart()
+        }
         cartService.addItemToCart(itemId)
         return
     }

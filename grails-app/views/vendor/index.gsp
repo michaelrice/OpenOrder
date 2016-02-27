@@ -15,7 +15,7 @@
         <div class="message" role="status">${flash.message}</div>
     </g:if>
     <div class="jumbotron">
-        <table class="table table-striped">
+        <table class="table table-striped table-nowrap">
             <thead>
             <tr class="info">
                 <g:sortableColumn property="name" title="${message(code: 'vendor.name.label', default: 'Name')}"/>
@@ -35,9 +35,11 @@
                     <g:if test="${vendorInstance?.showContactInfoToUser || grails.plugin.springsecurity.SpringSecurityUtils.ifAnyGranted("ROLE_ADMIN")}">
                         <td>${fieldValue(bean: vendorInstance, field: "email")}</td>
                         <td>${fieldValue(bean: vendorInstance, field: "phoneNumber")}</td>
-                        <td>${fieldValue(bean: vendorInstance, field: "website")}</td>
+                        <td><a href="${fieldValue(bean: vendorInstance, field: "website")}">Website</a></td>
                     </g:if>
                     <g:else>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </g:else>
                     <td>${fieldValue(bean: vendorInstance, field: "description")}</td>

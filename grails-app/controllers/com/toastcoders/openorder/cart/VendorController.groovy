@@ -11,6 +11,12 @@ class VendorController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def items() {
+        int vendorId = params.get("id") as int
+        Vendor vendorInstance = Vendor.findById(vendorId)
+        respond vendorInstance
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Vendor.list(params), model:[vendorInstanceCount: Vendor.count()]

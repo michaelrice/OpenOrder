@@ -8,23 +8,15 @@
 </head>
 
 <body role="document">
-    <div class="container">
-        <h1><g:message code="default.show.label" args="[entityName]"/></h1>
+    <div class="container-fluid">
+        <h1>${vendorInstance.name}</h1>
         <g:if test="${flash.message}">
             <div class="alert-warning" role="status">${flash.message}</div>
         </g:if>
         <div class="jumbotron">
-            <ul class="list-unstyled">
-                <g:if test="${vendorInstance?.name}">
-                    <li class="fieldcontain">
-                        <span id="name-label" class="property-label"><g:message code="vendor.name.label" default="Name"/></span>
-
-                        <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${vendorInstance}"
-                                                                                                field="name"/></span>
-
-                    </li>
-                </g:if>
-
+            <div class="">
+                <p class="lead">${vendorInstance.description}</p>
+            </div>
                 <g:if test="${SpringSecurityUtils.ifAnyGranted("ROLE_ADMIN") || vendorInstance?.showContactInfoToUser}">
                 <g:if test="${vendorInstance?.email}">
                     <li class="fieldcontain">
@@ -51,27 +43,10 @@
                     </g:if>
                 </g:if>
 
-                <g:if test="${vendorInstance?.description}">
-                    <li class="fieldcontain">
-                        <span id="description-label" class="property-label"><g:message code="vendor.description.label"
-                                                                                       default="Description"/></span>
-
-                        <span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${vendorInstance}"
-                                                                                                       field="description"/></span>
-
-                    </li>
-                </g:if>
-
                 <g:if test="${vendorInstance?.items}">
+                    <h4>See All of ${vendorInstance.name}'s products</h4>
                     <li class="fieldcontain">
-                        <span id="items-label" class="property-label"><g:message code="vendor.items.label"
-                                                                                 default="Items"/></span>
-
-                        <g:each in="${vendorInstance.items}" var="i">
-                            <span class="property-value" aria-labelledby="items-label"><g:link controller="item" action="show"
-                                                                                               id="${i.id}">${i?.encodeAsHTML()}</g:link></span>
-                        </g:each>
-
+                        <g:link class="hyperlink" controller="vendor" action="items" id="${vendorInstance.id}">All Products</g:link>
                     </li>
                 </g:if>
                 <g:if test="${vendorInstance?.showContactInfoToUser}">

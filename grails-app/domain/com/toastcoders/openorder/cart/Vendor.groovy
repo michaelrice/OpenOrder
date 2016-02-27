@@ -22,5 +22,6 @@ class Vendor {
         sort "name"
         items sort: "name"
         showContactInfoToUser defaultValue: false
+        description type: "text"
     }
 }

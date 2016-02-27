@@ -20,6 +20,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><g:link class="navbar-link" controller="cart" action="show">Cart</g:link>
+                <li><g:link class="navbar-link" controller="logout" action="index">Logout</g:link>
         </div>
     </div>
 </nav>

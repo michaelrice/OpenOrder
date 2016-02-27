@@ -12,6 +12,7 @@
     <!-- Latest compiled and minified CSS -->
     <asset:stylesheet src="bootstrap.css" />
     <asset:stylesheet src="nav.css" />
+    <asset:stylesheet src="custom.css" />
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
