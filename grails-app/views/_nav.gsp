@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <g:link class="navbar-brand">${grailsApplication.config.siteName}</g:link>
+            <g:link class="navbar-brand" controller="index" action="index">${grailsApplication.config.siteName}</g:link>
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

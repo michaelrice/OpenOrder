@@ -14,9 +14,9 @@
 </head>
 
 <body role="document">
-    <div class="container">
+    <div class="container" id="show-cart">
         <div class="jumbotron">
-            <g:if test="${items.length >= 1}">
+            <g:if test="${items?.length >= 1}">
                 <g:render template="show_all_cart_items" />
             </g:if>
             <g:else>

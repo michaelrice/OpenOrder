@@ -6,7 +6,7 @@ class Cart {
 
     Date dateCreated
     Date lastUpdated
-    static hasMany = [items: SoldItem]
+    static hasMany = [items: CartItem]
     static belongsTo = [customer: Customer]
 
     static mapping = {
@@ -16,5 +16,4 @@ class Cart {
     static constraints = {
         items nullable: true
     }
-
 }

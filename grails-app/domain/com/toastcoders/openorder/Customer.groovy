@@ -1,6 +1,7 @@
 package com.toastcoders.openorder
 
 import com.toastcoders.openorder.cart.Cart
+import com.toastcoders.openorder.cart.PurchaseOrder
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
@@ -28,6 +29,8 @@ class Customer implements Serializable {
     boolean accountLocked
     boolean passwordExpired
     Cart cart
+
+    static hasMany = [purchaseOrders: PurchaseOrder]
 
     Customer(String username, String password) {
         this()
@@ -68,6 +71,7 @@ class Customer implements Serializable {
         primaryEmail nullable: true
         secondaryEmail nullable: true
         cart nullable: true
+        purchaseOrders nullable: true
     }
 
     static mapping = {

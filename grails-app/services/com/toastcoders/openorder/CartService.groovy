@@ -1,9 +1,8 @@
 package com.toastcoders.openorder
 
 import com.toastcoders.openorder.cart.Cart
-import com.toastcoders.openorder.cart.Cart
 import com.toastcoders.openorder.cart.Item
-import com.toastcoders.openorder.cart.SoldItem
+import com.toastcoders.openorder.cart.CartItem
 import grails.transaction.Transactional
 
 @Transactional
@@ -33,16 +32,28 @@ class CartService {
     def emptyCart() {
         Customer customer = springSecurityService.currentUser
         Cart cart = customer.cart
-        cart.items.each { item ->
+        CartItem item
+        int itemsInCart = cart.items.size()
+        itemsInCart.times {
+            item = cart.items.getAt(0)
             cart.removeFromItems(item)
             item.delete()
         }
         customer.save()
     }
 
+    def getCurrentUsersCart() {
+        Customer customer = springSecurityService.currentUser
+        if (!customer.cart) {
+            addCart()
+        }
+        Cart cart = customer.cart
+        return cart
+    }
+
     def getCartItems() {
         Customer customer = springSecurityService.currentUser
-        SoldItem[] items = customer.cart?.items
+        CartItem[] items = customer.cart?.items?.sort {it.name}
         return items
     }
 
@@ -51,18 +62,31 @@ class CartService {
         Customer customer = springSecurityService.currentUser
         Cart cart = customer.cart
         if (itemInCart(item, cart)) {
-            SoldItem cartItem = cart.items.find {
+            CartItem cartItem = cart.items.find {
                 it.name == item.name
             }
             cartItem.quantity++
         }
         else {
-            SoldItem soldItem = new SoldItem(item)
+            CartItem soldItem = new CartItem(item)
             soldItem.quantity = 1
             cart.addToItems(soldItem)
         }
         cart.save()
         customer.save()
+    }
+
+    def setItemQuantInCart(int itemId, int quant) {
+        Customer customer = springSecurityService.currentUser
+        Cart cart = customer.cart
+        CartItem item = cart.items.find { it.id == itemId.toLong() }
+        if (quant.toInteger() == 0) {
+            // remove item from cart
+            item.delete(flush: true)
+            return
+        }
+        item.quantity = quant
+        cart.save(flush: true)
     }
 
     protected static boolean itemInCart(Item item, Cart cart) {

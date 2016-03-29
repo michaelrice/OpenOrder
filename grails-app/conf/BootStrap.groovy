@@ -12,22 +12,29 @@ class BootStrap {
         def adminRole = new Role('ROLE_ADMIN').save()
         def userRole = new Role('ROLE_USER').save()
 
-        def testUser = new Customer('me', 'password')
+        def testAdmin = new Customer('me', 'password')
+        testAdmin.accountExpired = false
+        testAdmin.accountLocked = false
+        testAdmin.enabled = true
+        testAdmin.passwordExpired = false
+
+        testAdmin.save()
+
+        CustomerRole.create testAdmin, adminRole, true
+
+        def testUser = new Customer('mike', 'password')
         testUser.accountExpired = false
         testUser.accountLocked = false
         testUser.enabled = true
         testUser.passwordExpired = false
 
-//        Cart cart = new Cart()
-//        testUser.cart = cart
-
         testUser.save()
 
-        CustomerRole.create testUser, adminRole, true
+        CustomerRole.create testUser, userRole, true
 
-        assert Customer.count() == 1
+        assert Customer.count() == 2
         assert Role.count() == 2
-        assert CustomerRole.count() == 1
+        assert CustomerRole.count() == 2
 
         Vendor vendor = new Vendor()
         vendor.name = "Good Vendor"
@@ -40,8 +47,19 @@ class BootStrap {
         Category category = new Category(name: "Dairy", isPrimary: true)
         category.save()
 
-        Item item = new Item(name: "milk", vendor: vendor, category: category, price: 5)
-        item.save()
+        Item item = new Item(name: "milk", vendor: vendor, category: category, price: "5.00")
+        item.save(failOnError:true)
+
+        Item item2 = new Item(name: "beef", vendor: vendor, category: category, price: "5.22")
+        item2.save(failOnError:true)
+
+        Item item3 = new Item(name: "cheese", vendor: vendor, category: category, price: "5.34")
+        item3.save(failOnError:true)
+
+        Item item4 = new Item(name: "bread", vendor: vendor, category: category, price: "5.77")
+        item4.save(failOnError:true)
+
+        assert Item.count() == 4
     }
     def destroy = {
     }

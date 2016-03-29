@@ -5,10 +5,10 @@ class Item {
     String name
     String description
     int quantity
-    float cost
-    float price
+    BigDecimal cost
+    BigDecimal price
     boolean isOnSale
-    float salePrice
+    BigDecimal salePrice
     boolean splitable
     boolean featuredItem
     int orderLimit
@@ -23,6 +23,12 @@ class Item {
         medsizeImage nullable: true
         description nullable: true
         cart nullable: true
+        cost scale: 2
+        cost nullable: true
+        price scale: 2
+        price nullable: true
+        salePrice scale: 2
+        salePrice nullable: true
     }
 
     static mapping = {

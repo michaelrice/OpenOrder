@@ -8,17 +8,18 @@
     <title><g:layoutTitle default="Grails"/></title>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <asset:javascript src="food_club.js" />
 
     <!-- Latest compiled and minified CSS -->
     <asset:stylesheet src="bootstrap.css" />
     <asset:stylesheet src="nav.css" />
-    <asset:stylesheet src="custom.css" />
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <asset:stylesheet src="custom.css" />
     <g:layoutHead/>
 </head>
 

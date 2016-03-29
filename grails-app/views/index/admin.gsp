@@ -34,10 +34,15 @@
         <div class="col-xs-3">
             <h4>Reporting</h4>
             <ul class="list-unstyled">
-                <li>Coming Soon!</li>
+                <li><g:link Weekly Order Report</li>
             </ul>
         </div>
-        <div class="col-xs-3"></div>
+        <div class="col-xs-3">
+            <h4>Order Management</h4>
+            <ul class="list-unstyled">
+                <li><g:link controller="order" action="lock" name="Lock All Open Orders">Lock All Open Orders</g:link></li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
